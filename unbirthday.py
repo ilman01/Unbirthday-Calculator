@@ -79,7 +79,7 @@ def calculate_unbirthday(start_date, end_date=None):
 
 
 
-def unbirthday_to_years(amount_of_days, end_date):
+def unbirthday_enddate_to_years(amount_of_days, end_date):
     end_date = datetime.strptime(end_date, '%Y-%m-%d')
     amount_of_days = amount_of_days - 1
     years_back = 0
@@ -113,12 +113,12 @@ def count_back_past_date(days, input_date):
     # Convert the new date back to a string and return it
     return new_date.strftime(date_format)
 
-def reverse_unbirthday(unbirthday, current_date=None):
-    if current_date == None:
-        current_date = get_todays_date()
+def find_startdate_unbirthday(unbirthday, end_date=None):
+    if end_date == None:
+        end_date = get_todays_date()
     
     # Assume how many birthdays has passed based on the amount of unbirthdays
-    birthdays = unbirthday_to_years(unbirthday, current_date)
+    birthdays = unbirthday_enddate_to_years(unbirthday, end_date)
 
     # To reverse the unbirthday:
     # Add one because the day you were born
@@ -128,7 +128,7 @@ def reverse_unbirthday(unbirthday, current_date=None):
     reverse_your_current_day_on_earth = reverse_your_current_day_on_earth + birthdays
 
     # Count backwards the amount of days
-    reverse_unbirthday = count_back_past_date(reverse_your_current_day_on_earth, current_date)
+    reverse_unbirthday = count_back_past_date(reverse_your_current_day_on_earth, end_date)
 
     return reverse_unbirthday
 
@@ -169,7 +169,7 @@ def count_forward_future_date(days, input_date):
     # Convert the new date back to a string and return it
     return new_date.strftime(date_format)
 
-def reverse_startdate_unbirthday(unbirthday, start_date):
+def find_enddate_unbirthday(unbirthday, start_date):
     # Assume how many birthdays will pass based on the amount of unbirthdays
     birthdays = unbirthday_startdate_to_years(unbirthday, start_date)
 
