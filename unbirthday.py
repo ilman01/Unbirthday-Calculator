@@ -1,4 +1,5 @@
-from datetime import datetime
+from datetime import datetime, timedelta
+import math
 
 def add_ordinal_indicator(num):
     if 10 <= num % 100 <= 20:
@@ -75,5 +76,37 @@ def calculate_unbirthday(start_date, end_date=None):
 
     # There you go! Your current unbirthday!
     return unbirthday
+
+
+def count_back_past_date(days, input_date):
+    # Convert the input date string to a datetime object
+    days = days - 1
+    date_format = "%Y-%m-%d"
+    current_date = datetime.strptime(input_date, date_format)
+    
+    # Calculate the new date by subtracting the days
+    new_date = current_date - timedelta(days=days)
+    
+    # Convert the new date back to a string and return it
+    return new_date.strftime(date_format)
+
+def reverse_unbirthday(unbirthday, current_date=None):
+    if current_date == None:
+        current_date = get_todays_date()
+    
+    # Assume how many birthdays has passed based on the amount of unbirthdays
+    birthdays = math.floor(unbirthday / 364)
+
+    # To reverse the unbirthday:
+    # Add one because the day you were born
+    reverse_your_current_day_on_earth = unbirthday + 1
+
+    # Add the amount of birthdays
+    reverse_your_current_day_on_earth = reverse_your_current_day_on_earth + birthdays
+
+    # Count backwards the amount of days
+    reverse_unbirthday = count_back_past_date(reverse_your_current_day_on_earth, current_date)
+
+    return reverse_unbirthday
 
 # Format YYYY-MM-DD
