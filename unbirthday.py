@@ -78,6 +78,29 @@ def calculate_unbirthday(start_date, end_date=None):
     return unbirthday
 
 
+
+def unbirthday_to_years(amount_of_days, end_date):
+    end_date = datetime.strptime(end_date, '%Y-%m-%d')
+    amount_of_days = amount_of_days - 1
+    years_back = 0
+
+    while amount_of_days >= 365:
+        if is_leap_year(end_date.year - 1):
+            # If the previous year was a leap year, subtract 366 days
+            end_date = end_date - timedelta(days=366)
+            amount_of_days -= 366
+        else:
+            # Otherwise, subtract 365 days
+            end_date = end_date - timedelta(days=365)
+            amount_of_days -= 365
+        
+        # Add one day to the remaining amount of days
+        amount_of_days += 1
+        # Increment the count of years gone back
+        years_back += 1
+
+    return years_back
+
 def count_back_past_date(days, input_date):
     # Convert the input date string to a datetime object
     days = days - 1
@@ -95,7 +118,7 @@ def reverse_unbirthday(unbirthday, current_date=None):
         current_date = get_todays_date()
     
     # Assume how many birthdays has passed based on the amount of unbirthdays
-    birthdays = math.floor(unbirthday / 364)
+    birthdays = unbirthday_to_years(unbirthday, current_date)
 
     # To reverse the unbirthday:
     # Add one because the day you were born
