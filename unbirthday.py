@@ -132,4 +132,57 @@ def reverse_unbirthday(unbirthday, current_date=None):
 
     return reverse_unbirthday
 
+
+
+def unbirthday_startdate_to_years(amount_of_days, start_date):
+    start_date = datetime.strptime(start_date, '%Y-%m-%d')
+    amount_of_days = amount_of_days - 1
+    years_forward = 0
+
+    while amount_of_days >= 365:
+        if is_leap_year(start_date.year + 1):
+            # If the current year is a leap year, add 366 days
+            start_date = start_date + timedelta(days=366)
+            amount_of_days -= 366
+        else:
+            # Otherwise, add 365 days
+            start_date = start_date + timedelta(days=365)
+            amount_of_days -= 365
+        
+        # Add one day to the remaining amount of days
+        amount_of_days += 1
+        # Increment the count of years gone forward
+        years_forward += 1
+
+    return years_forward
+
+def count_forward_future_date(days, input_date):
+    days = days - 1
+
+    # Convert the input date string to a datetime object
+    date_format = "%Y-%m-%d"
+    current_date = datetime.strptime(input_date, date_format)
+    
+    # Calculate the new date by adding the days
+    new_date = current_date + timedelta(days=days)
+    
+    # Convert the new date back to a string and return it
+    return new_date.strftime(date_format)
+
+def reverse_startdate_unbirthday(unbirthday, start_date):
+    # Assume how many birthdays will pass based on the amount of unbirthdays
+    birthdays = unbirthday_startdate_to_years(unbirthday, start_date)
+
+    # To reverse the unbirthday:
+    # Add one because the day you were born
+    reverse_your_current_day_on_earth = unbirthday + 1
+
+    # Add the amount of birthdays
+    reverse_your_current_day_on_earth = reverse_your_current_day_on_earth + birthdays
+
+    # Count forwards the amount of days
+    reverse_unbirthday = count_forward_future_date(reverse_your_current_day_on_earth, start_date)
+
+    return reverse_unbirthday
+
 # Format YYYY-MM-DD
