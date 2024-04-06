@@ -114,6 +114,83 @@ print(f"Current Unbirthday: {add_ordinal_indicator(unbirthday)} Unbirthday")
 
 This will output the number of days representing the current unbirthday.
 
+## Discord NotSoBot Version
+
+```python
+.code python
+####||
+G=print
+C='%Y-%m-%d'
+A=None
+from datetime import datetime as B,timedelta as D
+import math
+def H(n):
+    A=n
+    if 10<=A%100<=20:B='th'
+    else:B={1:'st',2:'nd',3:'rd'}.get(A%10,'th')
+    return str(A)+B
+def E():return B.today().strftime(C)
+def F(y):A=y;return A%4==0 and(A%100!=0 or A%400==0)
+def I(s,e=A):
+    B=e
+    if B==A:B=E()
+    H,C,D=map(int,s.split('-'));I,J,K=map(int,B.split('-'));G=I-H
+    if(J,K)<(C,D):G-=1
+    elif(J,K)==(C,D):
+        if F(H)and C==2 and D==29:
+            if not F(I):G-=1
+    return G
+def J(s,e=A):
+    D=e
+    if D==A:D=E()
+    F=B.strptime(s,C);G=B.strptime(D,C);H=abs(G-F).days+1;return H
+def K(s,e=A):
+    D=s;C=e
+    if C==A:C=E()
+    F=I(D,C);B=J(D,C);B=B-1;B=B-F;return B
+def L(a,e):
+    E=a;A=e;A=B.strptime(A,C);E=E-1;G=0
+    while E>=365:
+        if F(A.year-1):A=A-D(days=366);E-=366
+        else:A=A-D(days=365);E-=365
+        E+=1;G+=1
+    return G
+def M(d,i):A=d;A=A-1;E=C;F=B.strptime(i,E);G=F-D(days=A);return G.strftime(E)
+def N(u,e=A):
+    D=u;B=e
+    if B==A:B=E()
+    F=L(D,B);C=D+1;C=C+F;G=M(C,B);return G
+def O(a,s):
+    E=a;A=s;A=B.strptime(A,C);E=E-1;G=0
+    while E>=365:
+        if F(A.year+1):A=A+D(days=366);E-=366
+        else:A=A+D(days=365);E-=365
+        E+=1;G+=1
+    return G
+def P(d,i):A=d;A=A-1;E=C;F=B.strptime(i,E);G=F+D(days=A);return G.strftime(E)
+def Q(u,s):C=s;B=u;D=O(B,C);A=B+1;A=A+D;E=P(A,C);return E
+def R(s,e,u):
+    D=u;C=e;B=s
+    if B!=A and C!=A:G(f"{H(K(B,C))} Unbirthday")
+    elif B!=A and D!=A:G(f"End Date: {Q(D,B)}")
+    elif C!=A and D!=A:G(f"Start Date: {N(D,C)}")
+    else:raise Exception('Invalid Parameters')
+####||
+
+# Unbirthday Calculator (Powered by NotSoBot)
+
+### Date Format YYYY-MM-DD    
+### Input two arguments, put None for the argument you want to search.  
+
+start_date = None
+end_date = "2022-10-07"
+unbirthdays = 3047
+
+R(start_date, end_date, unbirthdays)
+```
+
+This is if you want to use NotSoBot's `.code` command to run the code.
+
 ## Thanks
 
 **To the creators of the show *Alice's Wonderland Bakery*:**
