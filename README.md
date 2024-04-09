@@ -16,7 +16,11 @@ Join us in celebrating the spirit of Wonderland by incorporating a bit of unbirt
 
 ## Installation
 
-To use Unbirthday, download the `unbirthday.py` file and place it in your project directory.
+You can install the `unbirthday` module using pip:
+
+```bash
+pip install unbirthday
+```
 
 ## Usage
 
