@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 import math
 
 def add_ordinal_indicator(num):
+    '''Adds the ordinal indicator (e.g., "st", "nd", "rd", "th") to a given number.'''
     if 10 <= num % 100 <= 20:
         suffix = 'th'
     else:
@@ -9,12 +10,14 @@ def add_ordinal_indicator(num):
     return str(num) + suffix
 
 def get_todays_date():
+    '''Gets the current date in the format "YYYY-MM-DD".'''
     return datetime.today().strftime('%Y-%m-%d')
 
 def is_leap_year(year):
     return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
 
 def years_passed(start_date, end_date=None):
+    '''Calculates the number of years passed between two dates.'''
     if end_date == None:
         end_date = get_todays_date()
 
@@ -37,6 +40,7 @@ def years_passed(start_date, end_date=None):
     return years_diff
 
 def your_current_day_on_earth(start_date, end_date=None):
+    '''Calculates the number of days between two dates.'''
     if end_date == None:
         end_date = get_todays_date()
 
@@ -52,6 +56,7 @@ def your_current_day_on_earth(start_date, end_date=None):
 
 
 def calculate_unbirthday(start_date, end_date=None):
+    '''Calculates the current unbirthday based on the provided start and end dates.'''
     if end_date == None:
         end_date = get_todays_date()
 
@@ -114,6 +119,7 @@ def count_back_past_date(days, input_date):
     return new_date.strftime(date_format)
 
 def find_startdate_unbirthday(unbirthday, end_date=None):
+    '''Calculates the start date (birth date) based on the provided unbirthday and end dates.'''
     if end_date == None:
         end_date = get_todays_date()
     
@@ -170,6 +176,7 @@ def count_forward_future_date(days, input_date):
     return new_date.strftime(date_format)
 
 def find_enddate_unbirthday(unbirthday, start_date):
+    '''Calculates the end date (current date) based on the provided unbirthday and start dates.'''
     # Assume how many birthdays will pass based on the amount of unbirthdays
     birthdays = unbirthday_startdate_to_years(unbirthday, start_date)
 
