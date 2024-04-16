@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="unbirthday",
-    version="1.0.3",
+    version="1.0.4",
     description="Unbirthday is a Python module that provides functions to calculate and manage \"unbirthdays,\" which are days celebrated as not being a person's birthday.",
     packages=find_packages(),
     install_requires=[

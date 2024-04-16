@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 import math
 
-def add_ordinal_indicator(num):
+def add_ordinal_indicator(num: int) -> str:
     '''Adds the ordinal indicator (e.g., "st", "nd", "rd", "th") to a given number.'''
     if 10 <= num % 100 <= 20:
         suffix = 'th'
@@ -9,14 +9,14 @@ def add_ordinal_indicator(num):
         suffix = {1: 'st', 2: 'nd', 3: 'rd'}.get(num % 10, 'th')
     return str(num) + suffix
 
-def get_todays_date():
+def get_todays_date() -> str:
     '''Gets the current date in the format "YYYY-MM-DD".'''
     return datetime.today().strftime('%Y-%m-%d')
 
-def is_leap_year(year):
+def is_leap_year(year: int):
     return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
 
-def years_passed(start_date, end_date=None):
+def years_passed(start_date: str, end_date: str = None) -> int:
     '''Calculates the number of years passed between two dates.'''
     if end_date == None:
         end_date = get_todays_date()
@@ -39,7 +39,7 @@ def years_passed(start_date, end_date=None):
     
     return years_diff
 
-def your_current_day_on_earth(start_date, end_date=None):
+def your_current_day_on_earth(start_date: str, end_date: str = None) -> int:
     '''Calculates the number of days between two dates.'''
     if end_date == None:
         end_date = get_todays_date()
@@ -55,7 +55,7 @@ def your_current_day_on_earth(start_date, end_date=None):
     return delta
 
 
-def calculate_unbirthday(start_date, end_date=None):
+def calculate_unbirthday(start_date: str, end_date: str = None) -> int:
     '''Calculates the current unbirthday based on the provided start and end dates.'''
     if end_date == None:
         end_date = get_todays_date()
@@ -84,7 +84,7 @@ def calculate_unbirthday(start_date, end_date=None):
 
 
 
-def unbirthday_enddate_to_years(amount_of_days, end_date):
+def unbirthday_enddate_to_years(amount_of_days: int, end_date: str):
     end_date = datetime.strptime(end_date, '%Y-%m-%d')
     amount_of_days = amount_of_days - 1
     years_back = 0
@@ -106,7 +106,7 @@ def unbirthday_enddate_to_years(amount_of_days, end_date):
 
     return years_back
 
-def count_back_past_date(days, input_date):
+def count_back_past_date(days: int, input_date: str):
     # Convert the input date string to a datetime object
     days = days - 1
     date_format = "%Y-%m-%d"
@@ -118,7 +118,7 @@ def count_back_past_date(days, input_date):
     # Convert the new date back to a string and return it
     return new_date.strftime(date_format)
 
-def find_startdate_unbirthday(unbirthday, end_date=None):
+def find_startdate_unbirthday(unbirthday: int, end_date: str = None) -> str:
     '''Calculates the start date (birth date) based on the provided unbirthday and end dates.'''
     if end_date == None:
         end_date = get_todays_date()
@@ -140,7 +140,7 @@ def find_startdate_unbirthday(unbirthday, end_date=None):
 
 
 
-def unbirthday_startdate_to_years(amount_of_days, start_date):
+def unbirthday_startdate_to_years(amount_of_days: int, start_date: str):
     start_date = datetime.strptime(start_date, '%Y-%m-%d')
     amount_of_days = amount_of_days - 1
     years_forward = 0
@@ -162,7 +162,7 @@ def unbirthday_startdate_to_years(amount_of_days, start_date):
 
     return years_forward
 
-def count_forward_future_date(days, input_date):
+def count_forward_future_date(days: int, input_date: str):
     days = days - 1
 
     # Convert the input date string to a datetime object
@@ -175,7 +175,7 @@ def count_forward_future_date(days, input_date):
     # Convert the new date back to a string and return it
     return new_date.strftime(date_format)
 
-def find_enddate_unbirthday(unbirthday, start_date):
+def find_enddate_unbirthday(unbirthday: int, start_date: str) -> str:
     '''Calculates the end date (current date) based on the provided unbirthday and start dates.'''
     # Assume how many birthdays will pass based on the amount of unbirthdays
     birthdays = unbirthday_startdate_to_years(unbirthday, start_date)
